@@ -52,6 +52,7 @@
 #
 # 15-Jan-2022: Now placing username and password into config.cfg
 #
+# 03-Mar-2022: Reordering the logging to help it appear more appealing.
 ##################################################################################################
 #
 ##
