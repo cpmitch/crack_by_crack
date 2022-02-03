@@ -53,6 +53,7 @@
 # 15-Jan-2022: Now placing username and password into config.cfg
 #
 # 03-Mar-2022: Reordering the logging to help it appear more appealing.
+#
 ##################################################################################################
 #
 ##
@@ -579,7 +580,8 @@ fi
          # KEYSPERSECOND=$(( NUMOFKEYS / ELAPSEDSECONDS ))
          ELAPSEDMINS=$(( ELAPSEDSECONDS / 60 ))
          if (( $ELAPSEDMINS < 1 )) ; then
-           ELAPSEDMINS="less than 1"
+           # ELAPSEDMINS="less than 1"
+           ELAPSEDMINS=0
          fi
 
       sleep 0.0050
@@ -620,12 +622,12 @@ fi
    fi # Check for marker $pathToMarkers/$hexVal"_"$wordListDir"_"$johnRules
       # Check for marker $HOMEP/$pathToMarkers/$hexVal_$hexDir_$johnRules_$InProgress
 
-   echo "=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $ELAPSEDMINS m ($ELAPSEDSECONDS s), dir=$wordListDir, rule=$johnRules file=$FILE1  found '$NEWCHECKFORSUCCESS', move along ====="
-   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $ELAPSEDMINS m ($ELAPSEDSECONDS s), dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/master_log.txt
-   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $ELAPSEDMINS m ($ELAPSEDSECONDS s), dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> ./master_log.txt
+   echo "=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $(($ELAPSEDMINS%86400))d $(($ELAPSEDMINS%3600))h $(($ELAPSEDMINS%60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along ====="
+   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $(($ELAPSEDMINS%86400))d $(($ELAPSEDMINS%3600))h $(($ELAPSEDMINS%60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/master_log.txt
+   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $(($ELAPSEDMINS%86400))d $(($ELAPSEDMINS%3600))h $(($ELAPSEDMINS%60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> ./master_log.txt
    # echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $ELAPSEDMINS m ($ELAPSEDSECONDS s), dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/"$HOSTNAME".txt
 ### Modded log below...
-   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((ELAPSEDMINS % 86400)) d $((ELAPSEDMINS % 3600)) h $((ELAPSEDMINS % 60)) m $((ELAPSEDSECONDS % 60)) s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/"$HOSTNAME".txt
+   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $(($ELAPSEDMINS%86400))d $(($ELAPSEDMINS%3600))h $(($ELAPSEDMINS%60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/"$HOSTNAME".txt
    echo " "
    echo " "
    sleep 0.0050
