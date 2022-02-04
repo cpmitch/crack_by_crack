@@ -470,7 +470,7 @@ fi
 
    echo " "
    echo " " >> $HOMEP/master_log.txt
-   echo " " >> ./master_log.txt
+   # echo " " >> ./master_log.txt
    echo " " >> $HOMEP/"$HOSTNAME".txt
 
    # SUCCESSMSGSINMASTERLOG=$(cat $HOMEP/master_log.txt | egrep 'The PSK is |The password is ' | wc -l)
@@ -542,7 +542,7 @@ fi
 
       echo "+++$(date +%a) $(date +%D) $(date +%T) Start $crackTool on AP=$ESSID, MAC=$BSSID, using $hexVal '$easyHexVal' dir=$wordListDir, rule=$johnRules file=$FILE1 count=$count. ++++"
       echo "<BR>+++$(date +%a) $(date +%D) $(date +%T) Start $crackTool on AP=$ESSID, MAC=$BSSID, using $hexVal '$easyHexVal' dir=$wordListDir, rule=$johnRules file=$FILE1 count=$count. ++++" >> $pathToBaseDir/master_log.txt
-      echo "<BR>+++$(date +%a) $(date +%D) $(date +%T) Start $crackTool on AP=$ESSID, MAC=$BSSID, using $hexVal '$easyHexVal' dir=$wordListDir, rule=$johnRules file=$FILE1 count=$count. ++++" >> ./master_log.txt
+      # echo "<BR>+++$(date +%a) $(date +%D) $(date +%T) Start $crackTool on AP=$ESSID, MAC=$BSSID, using $hexVal '$easyHexVal' dir=$wordListDir, rule=$johnRules file=$FILE1 count=$count. ++++" >> ./master_log.txt
       echo "<BR>+++$(date +%a) $(date +%D) $(date +%T) Start $crackTool on AP=$ESSID, MAC=$BSSID, using $hexVal '$easyHexVal' dir=$wordListDir, rule=$johnRules file=$FILE1 count=$count. ++++" >> $pathToBaseDir/"$HOSTNAME".txt
 
       RC1=91
@@ -632,11 +632,10 @@ fi
 ### Modded log below...
    echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/"$HOSTNAME".txt
 
-         if (( $ELAPSEDSECONDS < 1 )) ; then
+         if (( $ELAPSEDSECONDS > 0 )) ; then
             echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', by $HOSTNAME =====" >> ./master_log.txt
          fi
 
-   echo " "
    echo " "
    sleep 0.0050
 
@@ -649,11 +648,11 @@ script_sec_old=$(date -d "$scriptStartDate" +%s)
 script_sec_new=$(date -d "$scriptEndDate" +%s)
 scriptELAPSEDSECONDS=$(( script_sec_new - script_sec_old ))
 
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s"
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> ./master_log.txt
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> ../master_log.txt
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> $pathToBaseDir/master_log.txt
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> $pathToBaseDir/"$HOSTNAME".txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop '$ESSID' '$wordListDir' '$johnRules' ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s by $HOSTNAME"
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop '$ESSID' '$wordListDir' '$johnRules' ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s by $HOSTNAME" >> ./master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop '$ESSID' '$wordListDir' '$johnRules' ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s by $HOSTNAME" >> ../master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop '$ESSID' '$wordListDir' '$johnRules' ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s by $HOSTNAME" >> $pathToBaseDir/master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop '$ESSID' '$wordListDir' '$johnRules' ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s by $HOSTNAME" >> $pathToBaseDir/"$HOSTNAME".txt
 MESSAGE="End of '$ESSID' '$wordListDir' '$johnRules' looping '$(date +%R)'."
 echo "#### wordListDirRules $wordListDir $johnRules" >> ./config.cfg
 SENDEMAILALERT
