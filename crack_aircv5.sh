@@ -476,7 +476,7 @@ fi
    # SUCCESSMSGSINMASTERLOG=$(cat $HOMEP/master_log.txt | egrep 'The PSK is |The password is ' | wc -l)
    echo "+STRT $(date +%a) $(date +%D) $(date +%T) Start another aircack cycle..."
    echo "+STRT $(date +%a) $(date +%D) $(date +%T) Start another aircack cycle..." >> $pathToBaseDir/master_log.txt
-   echo "+STRT $(date +%a) $(date +%D) $(date +%T) Start another aircack cycle..." >> ./master_log.txt
+   # echo "+STRT $(date +%a) $(date +%D) $(date +%T) Start another aircack cycle..." >> ./master_log.txt
    echo "<BR>+STRT $(date +%a) $(date +%D) $(date +%T) Start another aircack cycle..." >> $pathToBaseDir/"$HOSTNAME".txt
 
 
@@ -629,9 +629,13 @@ fi
 
    echo "=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along ====="
    echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/master_log.txt
-   echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> ./master_log.txt
 ### Modded log below...
    echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', move along =====" >> $pathToBaseDir/"$HOSTNAME".txt
+
+         if (( $ELAPSEDSECONDS < 1 )) ; then
+            echo "<BR>=$(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' cycle in $((($ELAPSEDSECONDS/86400)%24))d $((($ELAPSEDSECONDS/3600)%24))h $(($ELAPSEDSECONDS%3600/60))m $(($ELAPSEDSECONDS%60))s dir=$wordListDir, rule=$johnRules file=$FILE1 found '$NEWCHECKFORSUCCESS', by $HOSTNAME =====" >> ./master_log.txt
+         fi
+
    echo " "
    echo " "
    sleep 0.0050
