@@ -52,7 +52,9 @@
 #
 # 15-Jan-2022: Now placing username and password into config.cfg
 #
-# 03-Mar-2022: Reordering the logging to help it appear more appealing.
+# 03-Feb-2022: Reordering the logging to help it appear more appealing.
+#
+# 04-Feb-2022: Adding a cumulative elapsed time report after 7E completes.
 #
 ##################################################################################################
 #
@@ -103,6 +105,8 @@ sendEmailFromUsername=""
 sendEmailFromPassword=""
 sendEmailFromEmail=""
 sendEmailToEmail=""
+scriptStartDate=""
+scriptEndDate=""
 
 function get_time () {
    num=$1
@@ -482,6 +486,7 @@ fi
    # MESSAGE="Start of '$ESSID' '$johnRules' '$1' looping."
    checkForJohnSanity
    MESSAGE="Start of '$ESSID' '$wordListDir' '$johnRules' looping '$(date +%R)'."
+   getScriptStartDate
    SENDEMAILALERT
 
    # Below is for each nad every entry...
@@ -635,12 +640,16 @@ fi
    # rm $HOMEP/$pathToMarkers/$hexVal"_"$wordListDir"_"$johnRules"_"$InProgress
    rm $HOMEP/$pathToMarkers/$hexVal"_"$wordListDir"_"$johnRules"_"$HOSTNAME"_"$InProgress
 done # for hexVal looping
+getScriptEndDate
+script_sec_old=$(date -d "$scriptStartDate" +%s)
+script_sec_new=$(date -d "$scriptEndDate" +%s)
+scriptELAPSEDSECONDS=$(( script_sec_new - script_sec_old ))
 
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye."
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> ./master_log.txt
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> ../master_log.txt
-echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> $pathToBaseDir/master_log.txt
-echo "<BR>=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> $pathToBaseDir/"$HOSTNAME".txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s"
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> ./master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> ../master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> $pathToBaseDir/master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop ended in $((($scriptELAPSEDSECONDS/86400)%24))d $((($scriptELAPSEDSECONDS/3600)%24))h $(($scriptELAPSEDSECONDS%3600/60))m $(($scriptELAPSEDSECONDS%60))s" >> $pathToBaseDir/"$HOSTNAME".txt
 MESSAGE="End of '$ESSID' '$wordListDir' '$johnRules' looping '$(date +%R)'."
 echo "#### wordListDirRules $wordListDir $johnRules" >> ./config.cfg
 SENDEMAILALERT
