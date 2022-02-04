@@ -609,10 +609,10 @@ fi
       # rm $HOMEP/$pathToMarkers/$hexVal"_"$wordListDir"_"$johnRules"_"$HOSTNAME"_"$InProgress
 
    else ### Following else clause is executed if marker or InProgress is found...
-      echo "=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker found or InProgress, has this been attempted already?"
-      echo "<BR>=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker found or InProgress, has this been attempted already?" >> $pathToBaseDir/master_log.txt
+      echo "=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker or InProgress."
+      echo "<BR>=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker or InProgress." >> $pathToBaseDir/master_log.txt
       # echo "<BR>=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker found or InProgress, has this been attempted already?" >> ./master_log.txt
-      echo "<BR>=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker found or InProgress, has this been attempted already?" >> $pathToBaseDir/"$HOSTNAME".txt
+      echo "<BR>=MRK- $(date +%a) $(date +%D) $(date +%T) ==== Completed $hexVal '$easyHexVal' Marker or InProgress." >> $pathToBaseDir/"$HOSTNAME".txt
 
       # rm $HOMEP/$pathToMarkers/$hexVal"_"$wordListDir"_"$johnRules"_"$InProgress
       # rm $HOMEP/$pathToMarkers/$hexVal"_"$wordListDir"_"$johnRules"_"$HOSTNAME"_"$InProgress
