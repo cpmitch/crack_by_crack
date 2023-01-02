@@ -56,8 +56,6 @@
 #
 # 04-Feb-2022: Adding a cumulative elapsed time report after 7E completes.
 #
-# 01-Jan-2023: Changed pathToBaseDir = $whoami to make the usefulness more generic for other users
-#
 ##################################################################################################
 #
 ##
@@ -409,8 +407,8 @@ fi
 
 if [ -e ./config.cfg ] ; then
    echo "Found config.cfg file, reading vars..."
+   pathToBaseDir=/home/$userId/caps  
    # pathToBaseDir=$(cat ./config.cfg | grep -Pv ^'\x23' | grep -m 1 pathToBaseDir | awk '{ print $2 }')   
-   pathToBaseDir=/home/$userId/caps/
    ESSID=$(cat ./config.cfg | grep -Pv ^'\x23' | grep -m 1 ESSID | awk '{ print $2 }')
    BSSID=$(cat ./config.cfg | grep -Pv ^'\x23' | grep -m 1 BSSID | awk '{ print $2 }')
    # wordListDir=$(cat ./config.cfg | grep -Pv ^'\x23' | grep -m 1 wordListDirRules | awk '{ print $2 }')   
