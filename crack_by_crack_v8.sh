@@ -829,12 +829,14 @@ get_time $scriptIntervalSeconds
 # echo "Script   End Date: $scriptEndDate  " >> $pathToBaseDir/"$HOSTNAME".txt
 echo "Script   End Date: $scriptEndDate '$ESSID' '$msWordListDir' '$shortSeparatorFilename' '$lsWordListDir' '$johnRules' '$HOSTNAME' tot: "$days"d "$hours"h "$mins"m "$sec"s" >> $pathToBaseDir/"$HOSTNAME".txt
 echo "Script   End Date: $scriptEndDate '$ESSID' '$msWordListDir' '$shortSeparatorFilename' '$lsWordListDir' '$johnRules' '$HOSTNAME' `tot: "$days"d "$hours"h "$mins"m "$sec"s >> ./master_log.txt
+echo "Script   End Date: $scriptEndDate '$ESSID' '$msWordListDir' '$shortSeparatorFilename' '$lsWordListDir' '$johnRules' '$HOSTNAME' `tot: "$days"d "$hours"h "$mins"m "$sec"s >> ../master_log.txt
 
 sleep .1000
 # done # while exists go, do ... until looping
 echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye."
 echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> $pathToBaseDir/master_log.txt
 echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> ./master_log.txt
+echo "=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> ../master_log.txt
 echo "<BR>=END- $(date +%a) $(date +%D) $(date +%T) Loop was exhausted, bye." >> $pathToBaseDir/"$HOSTNAME".txt
 echo " " >> $pathToBaseDir/"$HOSTNAME".txt
 echo " " >> ./master_log.txt

@@ -1,0 +1,5 @@
+git add .
+git push origin master
+git commit -m "New version 8 improves speeds"
+git push
+
